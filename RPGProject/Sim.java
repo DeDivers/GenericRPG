@@ -2,7 +2,7 @@ public class Sim {
 	public static boolean alive = true;
 	public static void main(String[] args) {
 		Warrior nemu = new Warrior("Slim", "Male", 100, 20, 10, 20);
-		Slime slime = new Slime(100, 10, 5, 10, 95);
+		Slime slime = new KingSlime();
 		Sword hellBreaker = new Sword(5, 90, 1, "Hell Breaker");
 		Staff wander = new Staff(6, 91, 2, "Wander", 10);
 		Sword wanderR = new Sword(10, 50, 3, "Wanderer");

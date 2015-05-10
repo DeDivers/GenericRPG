@@ -1,16 +1,20 @@
 import java.util.Random;
-public abstract class Character {
+import java.util.HashSet;
+public abstract class Character implements Inflictable{
 	private String name;
 	private String gender;
 	private double healthPoints;
+	private double maxHP;
 	private double attack;
 	private double defense;
 	private double speed;
+	private HashSet<Ailment> statusEff = new HashSet<>();
 	
 	public Character(String name, String gender, double hp, double att, double def, double spd) {
 		this.name = name;
 		this.gender = gender;
 		healthPoints = hp;
+		maxHP = hp;
 		attack = att;
 		defense = def;
 		speed = spd;
@@ -34,6 +38,14 @@ public abstract class Character {
 
 	public void setHP(double value) {
 		healthPoints = healthPoints + value;
+	}
+
+	public double getMaxHP() {
+		return maxHP;
+	}
+
+	public void setMaxHP(double ks) {
+		maxHP = maxHP + ks;
 	}
 
 	public double getAtt() {
@@ -86,5 +98,24 @@ public abstract class Character {
 		} else {
 			return false;
 		}
+	}
+
+	public boolean isInflicted() {
+		if (statusEff.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	public HashSet<Ailment> ailments() {
+		return statusEff;
+	}
+
+	public void addAilment(Ailment ai) {
+		statusEff.add(ai);
+	}
+
+	public void healAilment(Ailment ai) {
+
 	}
 }

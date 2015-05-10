@@ -1,11 +1,13 @@
 import java.util.Random;
-public abstract class Monster {
+import java.util.HashSet;
+public abstract class Monster implements Inflictable{
 	private String name;
 	private double healthPoints;
 	private double attack;
 	private double defense;
 	private double speed;
 	private int accuracy;
+	private HashSet<Ailment> statusEff = new HashSet<>();
 	
 	public Monster(String name, double hp, double att, double def, double spd, int acc) {
 		this.name = name;
@@ -88,4 +90,19 @@ public abstract class Monster {
 	}
 
 	public abstract Item drop();
+
+	public boolean isInflicted() {
+		if (statusEff.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	public HashSet<Ailment> ailments() {
+		return statusEff;
+	}
+
+	public void addAilment(Ailment ai) {
+		statusEff.add(ai);
+	}
 } 
