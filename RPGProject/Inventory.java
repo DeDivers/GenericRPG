@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 public class Inventory {
-	private ArrayList<Item> inv = new ArrayList<Item>();
+	private ArrayList<Item> inv;
 
 	public Inventory() {
-
+		inv = new ArrayList<Item>();
 	}
 
 	public void open() {
@@ -18,7 +18,12 @@ public class Inventory {
 	}
 
 	public void add(Item obj) {
-		inv.add(obj);
+		if (obj == null) {
+			System.out.print("");
+		} else {
+			System.out.println("You found " + obj.getName());
+			inv.add(obj);
+		}
 	}
 
 	public void remove(int index) {

@@ -1,5 +1,5 @@
 public class StrPot extends Potion {
-	private double effect
+	private double effect;
 	
 	public StrPot(String name, String type, String des,
 		double eff) {

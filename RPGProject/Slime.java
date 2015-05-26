@@ -21,4 +21,8 @@ public class Slime extends Monster {
 	public Item drop() {
 		return hellRaiser;
 	}
+
+	public int dropEXP() {
+		return 25;
+	}
 }

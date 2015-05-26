@@ -1,3 +1,4 @@
+import java.util.HashSet;
 public interface Inflictable {
 	
 	boolean isInflicted();

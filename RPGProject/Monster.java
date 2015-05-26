@@ -3,6 +3,7 @@ import java.util.HashSet;
 public abstract class Monster implements Inflictable{
 	private String name;
 	private double healthPoints;
+	private double maxHP;
 	private double attack;
 	private double defense;
 	private double speed;
@@ -12,6 +13,7 @@ public abstract class Monster implements Inflictable{
 	public Monster(String name, double hp, double att, double def, double spd, int acc) {
 		this.name = name;
 		healthPoints = hp;
+		maxHP = hp;
 		attack = att;
 		defense = def;
 		speed = spd;
@@ -20,6 +22,10 @@ public abstract class Monster implements Inflictable{
 
 	public String getName() {
 		return name;
+	}
+
+	public double getMaxHP() {
+		return maxHP;
 	}
 
 	public double getHP() {
@@ -105,4 +111,14 @@ public abstract class Monster implements Inflictable{
 	public void addAilment(Ailment ai) {
 		statusEff.add(ai);
 	}
+
+	public void healAilment(Ailment ai) {
+		statusEff.remove(ai);
+	}
+
+	public void healAll() {
+		statusEff.clear();
+	}
+
+	public abstract int dropEXP();
 } 
