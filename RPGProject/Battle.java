@@ -35,18 +35,20 @@ public class Battle {
 			System.out.println("Turn #" + turnCount);
 			System.out.println(battlePlay.getHP());
 			System.out.println(battleEnem.getHP());
-			//System.out.println(battlePlay.isDead());
-			//System.out.println(battleEnem.isDead());
 			System.out.println();
 			turnCount++;
 		}
 		if (battlePlay.isDead()) {
 			System.out.println("Game Over");
+			System.exit(0);
 		} else {
 			battlePlay.getInventory().add(battleEnem.drop());
 			battlePlay.gainEXP(battleEnem.dropEXP());
+			battlePlay.levelUp();
 		}
-		// System.out.println(battlePlay.isDead());
-		// System.out.println(battleEnem.isDead());
+	}
+
+	public void battleActions() {
+		System.out.println();
 	}
 }

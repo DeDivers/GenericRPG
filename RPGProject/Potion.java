@@ -7,4 +7,7 @@ public abstract class Potion extends Item {
 		this.type = type;
 		description = des;
 	}
+
+	public abstract double use();
+
 }

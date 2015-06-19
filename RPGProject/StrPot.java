@@ -7,4 +7,9 @@ public class StrPot extends Potion {
 		effect = eff;
 	}
 
+	public double use() {
+		System.out.println();
+		return 0;
+	}
+
 }

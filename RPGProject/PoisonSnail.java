@@ -11,19 +11,23 @@ public class PoisonSnail extends Monster {
 	}
 
 	public int dropEXP() {
-		return 50;
+		return 200;
 	}
 
 	public void attack(Character ch) {
-		Random ran = new Random();
-		int accPer = 100 - getAccuracy();
-		int random = ran.nextInt(100);
-		if (random >= accPer) {
-			double k = ch.damage(getAtt());
-			p.affect(ch);
-			System.out.println(k + " damage done.");
+		if (getCanMove()) {
+			Random ran = new Random();
+			int accPer = 100 - getAccuracy();
+			int random = ran.nextInt(100);
+			if (random >= accPer) {
+				double k = ch.damage(getAtt());
+				p.affect(ch);
+				System.out.println(k + " damage done.");
+			} else {
+				System.out.println("Damage is cero");
+			}
 		} else {
-			System.out.println("Damage is cero");
+			System.out.println("The enemy can't move!");
 		}
 	}
 }

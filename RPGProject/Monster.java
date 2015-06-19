@@ -9,6 +9,7 @@ public abstract class Monster implements Inflictable{
 	private double speed;
 	private int accuracy;
 	private HashSet<Ailment> statusEff = new HashSet<>();
+	private boolean canMove;
 	
 	public Monster(String name, double hp, double att, double def, double spd, int acc) {
 		this.name = name;
@@ -18,6 +19,7 @@ public abstract class Monster implements Inflictable{
 		defense = def;
 		speed = spd;
 		accuracy = acc;
+		canMove = true;
 	}
 
 	public String getName() {
@@ -121,4 +123,17 @@ public abstract class Monster implements Inflictable{
 	}
 
 	public abstract int dropEXP();
+
+	public boolean getCanMove() {
+		return canMove;
+	}
+
+	public void setCanMove(boolean b) {
+		canMove = b;
+	}
+
+	public int randomNumberGen() {
+		Random r = new Random();
+		return r.nextInt(100);
+	}
 } 

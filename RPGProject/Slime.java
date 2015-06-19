@@ -23,6 +23,6 @@ public class Slime extends Monster {
 	}
 
 	public int dropEXP() {
-		return 25;
+		return 15;
 	}
 }

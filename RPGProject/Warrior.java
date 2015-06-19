@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 public class Warrior extends Character {
 
 	private Weapon[] equipped = new Weapon[1];
@@ -32,23 +33,47 @@ public class Warrior extends Character {
 	}
 
 	public void attack(Monster target, String action) {
-		Random ran = new Random();
-		if (action.equals("a")) {
-			Weapon wep = equipped[0];
-			int acc = wep.getAccuracy();
-			//System.out.println(acc);
-			int accPer = 100 - acc;
-			int random = ran.nextInt(100);
-			if (random >= accPer) {
-				double dam = target.damage(getAtt());
-				System.out.println("Damage is " + dam);
-			} else {
-				System.out.println("The attack missed...");
+		if (getCanMove()){
+			Random ran = new Random();
+			if (action.equals("a") || action.equals("A")) {
+				Weapon wep = equipped[0];
+				double acc = wep.getAccuracy() * getAccuracyModifier();
+				//System.out.println(acc);
+				double accPer = 100 - acc;
+				int random = ran.nextInt(100);
+				if (random >= accPer) {
+					double dam = target.damage(getAtt() * getAttackModifier());
+					System.out.println("Damage is " + dam);
+				} else {
+					System.out.println("The attack missed...");
+				}
+			} else if (action.equals("s") || action.equals("S")) {
+				System.out.println("You skipped your turn.");
+			} else if (action.equals("k") || action.equals("K")) {
+
+			} else if (action.equals("i") || action.equals("I")) {
+				Scanner scan = new Scanner(System.in);
+				getInventory().open();
+				System.out.println("Which item would you like to use: (Enter \"-1\" to quit)");
+				int choice = scan.nextInt();
+				try {
+					if (!(getInventory().view(choice) instanceof Potion)) {
+						throw new UnusableItemException();
+					} else if (choice == -1) {
+						System.out.println("Choose a new action");
+						String choose = scan.nextLine();
+						attack(target, choose);
+					} else {
+						Item usable = getInventory().use(choice);
+						//usable.use();
+					}
+				} catch (UnusableItemException k) {
+					attack(target, action);
+				}
 			}
-		} else if (action.equals("s")) {
-			System.out.println("You skipped your turn.");
-		} else if (action.equals("k")) {
-			
+
+		} else {
+			System.out.println("You are paralyzed and cannot move!");
 		}
 	}
 }

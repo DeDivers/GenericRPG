@@ -26,8 +26,16 @@ public class Inventory {
 		}
 	}
 
+	public Item use(int index) {
+		return inv.remove(index - 1);
+	}
+
 	public void remove(int index) {
 		inv.remove(index - 1);
+	}
+
+	public Item view(int index) {
+		return inv.get(index - 1);
 	}
 
 

@@ -14,6 +14,12 @@ public abstract class Character implements Inflictable, Levelable{
 	private Inventory inventory;
 	private ExperienceTable table;
 	private HashSet<Ailment> statusEff = new HashSet<>();
+	private boolean canMove;
+	private double attackMod;
+	private double defenseMod;
+	private double speedMod;
+	private double accuracyMod;
+
 	
 	public Character(String name, String gender, double hp, double att, double def, double spd) {
 		this.name = name;
@@ -27,6 +33,11 @@ public abstract class Character implements Inflictable, Levelable{
 		exp = 0;
 		inventory = new Inventory();
 		table = new ExperienceTable();
+		canMove = true;
+		attackMod = 1;
+		defenseMod = 1;
+		speedMod = 1;
+		accuracyMod = 1;
 	}
 
 	public String getName() {
@@ -86,11 +97,11 @@ public abstract class Character implements Inflictable, Levelable{
 	}
 
 	public void levelUp() {
-		if (exp >= table.getRemainingEXP(level)) {
+		if (exp >= table.getNextLevel(level)) {
 			Scanner s = new Scanner(System.in);
 			level += 1;
 			System.out.println("Level up!");
-			for (int i = 5; i < 1; i--) {
+			for (int i = 5; i > 0; i--) {
 				String ans = s.next();
 				if (ans.equals("a")) {
 					setAtt(1);
@@ -100,6 +111,9 @@ public abstract class Character implements Inflictable, Levelable{
 					setSpd(1);
 				} else if (ans.equals("h")) {
 					setMaxHP(7);
+				} else {
+					System.out.println("Not a valid input.");
+					i++;
 				}
 			}
 		} else {
@@ -129,7 +143,8 @@ public abstract class Character implements Inflictable, Levelable{
 	
 	public double damage(double att) {
 		Random ran = new Random();
-		double damPer = (100 - (defense / att))/ 100;
+		double defence = defense * defenseMod;
+		double damPer = (100 - (defence / att))/ 100;
 		if (damPer < 0) {
 			return 0.0;
 		}
@@ -143,12 +158,13 @@ public abstract class Character implements Inflictable, Levelable{
 		healthPoints = healthPoints - (atk + atak);
 		return (atk + atak);
 	}
+	
 	public boolean isDead() {
 		if (healthPoints <=0.0) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
+
 	}
 
 	public boolean isInflicted() {
@@ -172,5 +188,45 @@ public abstract class Character implements Inflictable, Levelable{
 
 	public void healAll() {
 		statusEff.clear();
+	}
+
+	public boolean getCanMove() {
+		return canMove;
+	}
+
+	public void setCanMove(boolean b) {
+		canMove = b;
+	}
+
+	public double getAttackModifier() {
+		return attackMod;
+	}
+
+	public void setAttackModifier(double value) {
+		attackMod = value;
+	}
+
+	public double getDefenseModifier() {
+		return defenseMod;
+	}
+
+	public void setDefenseModifier(double value) {
+		defenseMod = value;
+	}
+
+	public double getSpeedModifier() {
+		return speedMod;
+	}
+
+	public void setSpeedModifier(double value) {
+		speedMod = value;
+	}
+
+	public double getAccuracyModifier() {
+		return accuracyMod;
+	}
+
+	public void setAccuracyModifier(double value) {
+		accuracyMod = value;
 	}
 }
