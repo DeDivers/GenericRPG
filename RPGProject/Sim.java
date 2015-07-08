@@ -1,12 +1,13 @@
 public class Sim {
-	public static boolean alive = true;
+	//public static boolean alive = true;
 	public static void main(String[] args) {
-		Character nemu = new Warrior("Slim", "Male", 100, 20, 10, 20);
-		Monster slime = new Bear();
+		Character nemu = new Warrior("Slim", 100, 20, 10, 20, "Male");
+		Monster slime = new TestingDummy();
 		Sword hellBreaker = new Sword(5, 90, 1, "Hell Breaker");
 		Staff wander = new Staff(6, 91, 2, "Wander", 10);
 		Sword wanderR = new Sword(10, 50, 3, "Wanderer");
 		Inventory i = new Inventory();
+		nemu.addAilment(new AttackDown(.5));
 		i.add(hellBreaker);
 		i.add(wander);
 		i.add(wanderR);

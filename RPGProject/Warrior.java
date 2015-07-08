@@ -4,8 +4,8 @@ public class Warrior extends Character {
 
 	private Weapon[] equipped = new Weapon[1];
 	
-	public Warrior(String name, String gender, double hp, double att, double def, double spd) {
-		super(name, gender, hp, att, def, spd);
+	public Warrior(String name, double hp, double att, double def, double spd, String gender) {
+		super(name, hp, att, def, spd, gender);
 	}
 
 	public void equip(Weapon obj) {
@@ -64,7 +64,13 @@ public class Warrior extends Character {
 						String choose = scan.nextLine();
 						attack(target, choose);
 					} else {
-						Item usable = getInventory().use(choice);
+						Potion usable = (Potion) getInventory().use(choice);
+						Types t = usable.getType();
+						if (t == Types.HEALTH) {
+							setHP(usable.use());
+						} else if (t == Types.ATTACK) {
+							System.out.println("");
+						}
 						//usable.use();
 					}
 				} catch (UnusableItemException k) {

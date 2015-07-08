@@ -7,9 +7,9 @@ public abstract class Ailment {
 		this.effect = effect;
 	}
 
-	public abstract void affect(Character ch);
+	public abstract void affect(Base ch);
 
-	public abstract void affect(Monster mo);
+	//public abstract void affect(Monster mo);
 
 	public String toString() {
 		return name;

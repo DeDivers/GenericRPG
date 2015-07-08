@@ -11,7 +11,7 @@ public class KingSlime extends Boss {
 		if (i == 99) {
 			return new Sword(15, 95, 7, "King Slayer");
 		} else if (i > 10 && i < 26) {
-			return new StrPot("Power of a King", "strength", "Gain the power of a King with this!",
+			return new StrPot("Power of a King", Types.ATTACK, "Gain the power of a King with this!",
 				8);
 		} else {
 			return null;

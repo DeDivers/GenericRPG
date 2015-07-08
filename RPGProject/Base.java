@@ -1,3 +1,5 @@
+import java.util.HashSet;
+import java.util.Random;
 public abstract class Base implements Inflictable {
 	private String name;
 	private double healthPoints;
@@ -40,6 +42,9 @@ public abstract class Base implements Inflictable {
 
 	public void setHP(double value) {
 		healthPoints = healthPoints + value;
+		if (healthPoints > maxHP) {
+			healthPoints = maxHP;
+		}
 	}
 
 	public double getMaxHP() {
@@ -144,5 +149,23 @@ public abstract class Base implements Inflictable {
 	public void setAccuracyModifier(double value) {
 		accuracyMod = value;
 	}
-}
+
+	public double damage(double att) {
+		Random ran = new Random();
+		double defence = getDef() * getDefenseModifier();
+		double damPer = (100 - (defence / att))/ 100;
+		if (damPer < 0) {
+			return 0.0;
+		}
+		double atk = att * damPer;
+		double flux = atk * .5;
+		double atak = flux * ran.nextDouble();
+		int dou = ran.nextInt(2);
+		if (dou == 0) {
+			atak = atak * -1;
+		}
+		setHP(-(atk + atak));
+		return (atk + atak);
+	}
+
 }

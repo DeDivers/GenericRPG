@@ -1,4 +1,4 @@
-public class AttackDown extends StatusDown {
+public class AttackDown extends StatusChange {
 	private int turnCount;
 
 	public AttackDown(double percent) {
@@ -6,8 +6,9 @@ public class AttackDown extends StatusDown {
 		turnCount = 0;
 	}
 
-	public void affect(Character ch) {
+	public void affect(Base ch) {
 		turnCount++;
+		//System.out.println(turnCount);
 		if (turnCount > 5) {
 			ch.setAttackModifier(1);
 			ch.healAilment(this);
@@ -16,7 +17,4 @@ public class AttackDown extends StatusDown {
 		}
 	}
 
-	public void affect(Monster mo) {
-		System.out.println("");
-	}
 }

@@ -6,17 +6,17 @@ public class Paralyzation extends Ailment {
 		super("Paralyze", "Paralyze");
 	}
 
-	public void affect(Character ch) {
+	public void affect(Base ch) {
 		int chance = r.nextInt(2);
 		if (chance == 1) {
 			ch.setCanMove(false);
 		}
 	}
 
-	public void affect(Monster mo) {
-		int chance = r.nextInt(2);
-		if (chance == 0) {
-			mo.setCanMove(false);
-		}
-	}
+	// public void affect(Monster mo) {
+	// 	int chance = r.nextInt(2);
+	// 	if (chance == 0) {
+	// 		mo.setCanMove(false);
+	// 	}
+	// }
 }

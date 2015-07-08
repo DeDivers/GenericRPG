@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.HashSet;
 public abstract class Monster extends Base implements Inflictable{
 	private int accuracy;
 	
@@ -17,23 +16,6 @@ public abstract class Monster extends Base implements Inflictable{
 	}
 
 	public abstract void attack(Character target);
-	
-	public double damage(double att) {
-		Random ran = new Random();
-		double damPer = (100 - (defense / att))/ 100;
-		if (damPer < 0) {
-			return 0.0;
-		}
-		double atk = att * damPer;
-		double flux = atk * .5;
-		double atak = flux * ran.nextDouble();
-		int dou = ran.nextInt(2);
-		if (dou == 0) {
-			atak = atak * -1;
-		}
-		healthPoints = healthPoints - (atk + atak);
-		return (atk + atak);
-	}
 
 	public abstract Item drop();
 

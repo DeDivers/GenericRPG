@@ -1,5 +1,3 @@
-import java.util.Random;
-import java.util.HashSet;
 import java.util.Scanner;
 public abstract class Character extends Base implements Levelable{
 	private String gender;
@@ -71,21 +69,4 @@ public abstract class Character extends Base implements Levelable{
 
 	public abstract void attack(Monster target, String action);
 	
-	public double damage(double att) {
-		Random ran = new Random();
-		double defence = defense * defenseMod;
-		double damPer = (100 - (defence / att))/ 100;
-		if (damPer < 0) {
-			return 0.0;
-		}
-		double atk = att * damPer;
-		double flux = atk * .5;
-		double atak = flux * ran.nextDouble();
-		int dou = ran.nextInt(2);
-		if (dou == 0) {
-			atak = atak * -1;
-		}
-		healthPoints = healthPoints - (atk + atak);
-		return (atk + atak);
-	}
 }
