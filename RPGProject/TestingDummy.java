@@ -1,4 +1,4 @@
-public class TestingDummy extends Monster {
+public class TestingDummy extends Monster { //For testing obviously
 
 	 public TestingDummy() {
 	 	super("Testing Dummy", 50000, 0, 1, 1, 0);

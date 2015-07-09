@@ -106,7 +106,7 @@ public abstract class Base implements Inflictable {
 		statusEff.remove(ai);
 	}
 
-	public void healAll() {
+	public void healAll() { //Gets rid of all status effects from the character.
 		statusEff.clear();
 	}
 

@@ -1,5 +1,5 @@
 import java.util.Random;
-public class PoisonSnail extends Monster {
+public class PoisonSnail extends Monster { //used to test the poison ailment
 	private Ailment p = new Poison();
 	
 	public PoisonSnail() {

@@ -21,7 +21,7 @@ public abstract class Monster extends Base implements Inflictable{
 
 	public abstract int dropEXP();
 
-	public int randomNumberGen() {
+	public int randomNumberGen() { //Allows all subclasses of Monster to have random numbers w/o importing Random
 		Random r = new Random();
 		return r.nextInt(100);
 	}

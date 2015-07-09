@@ -12,11 +12,4 @@ public class Paralyzation extends Ailment {
 			ch.setCanMove(false);
 		}
 	}
-
-	// public void affect(Monster mo) {
-	// 	int chance = r.nextInt(2);
-	// 	if (chance == 0) {
-	// 		mo.setCanMove(false);
-	// 	}
-	// }
 }

@@ -1,5 +1,5 @@
 import java.util.Random;
-public class Slime extends Monster {
+public class Slime extends Monster { //Basic slime. A must for every RPG
 	private Sword hellRaiser = new Sword(6, 75, 2, "Hell Raiser");
 
 	public Slime(double hp, double att, double def, double spd, int acc) {

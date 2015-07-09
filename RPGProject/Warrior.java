@@ -49,7 +49,7 @@ public class Warrior extends Character {
 				}
 			} else if (action.equals("s") || action.equals("S")) {
 				System.out.println("You skipped your turn.");
-			} else if (action.equals("k") || action.equals("K")) {
+			} else if (action.equals("k") || action.equals("K")) { //For skills if I get this Far
 
 			} else if (action.equals("i") || action.equals("I")) {
 				Scanner scan = new Scanner(System.in);

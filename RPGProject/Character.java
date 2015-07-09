@@ -25,19 +25,20 @@ public abstract class Character extends Base implements Levelable{
 	}
 
 	public void levelUp() {
-		if (exp >= table.getNextLevel(level)) {
+		if (exp >= table.getNextLevel(level)) { //Checks the ExperienceTable to see if the experience is higher tan the next EXP level
 			Scanner s = new Scanner(System.in);
 			level += 1;
 			System.out.println("Level up!");
 			for (int i = 5; i > 0; i--) {
 				String ans = s.next();
-				if (ans.equals("a")) {
+				System.out.println("Points remaining: " + i);
+				if (ans.equals("a" || "A")) { //Increases attack stat by 1
 					setAtt(1);
-				} else if (ans.equals("d")) {
+				} else if (ans.equals("d" || "D")) { //Increases defense stat by 1
 					setDef(1);
-				} else if (ans.equals("s")) {
+				} else if (ans.equals("s" || "S")) { //Increases Speed stat by 1
 					setSpd(1);
-				} else if (ans.equals("h")) {
+				} else if (ans.equals("h" || "H")) { // Increases Maximum HP by 7
 					setMaxHP(7);
 				} else {
 					System.out.println("Not a valid input.");
@@ -45,7 +46,7 @@ public abstract class Character extends Base implements Levelable{
 				}
 			}
 		} else {
-			System.out.print("");
+			System.out.print(""); // Does nothing if not enough Experience
 		}
 	}
 
@@ -65,8 +66,8 @@ public abstract class Character extends Base implements Levelable{
 		return inventory;
 	}
 
-	public abstract void equip(Weapon obj);
+	public abstract void equip(Weapon obj); //Abstract to allow for more modularity for different classes.
 
-	public abstract void attack(Monster target, String action);
+	public abstract void attack(Monster target, String action); //Abstract to allow more modularity for any extra classes.
 	
 }

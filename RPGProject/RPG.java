@@ -1,3 +1,3 @@
-public class RPG {
+public class RPG { //For the GUI maybe
 	
 }
