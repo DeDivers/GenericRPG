@@ -1,11 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
 public class Warrior extends Character {
-
+	
 	private Weapon[] equipped = new Weapon[1];
 	
 	public Warrior(String name, double hp, double att, double def, double spd, String gender) {
 		super(name, hp, att, def, spd, gender);
+		
 	}
 
 	public void equip(Weapon obj) {
@@ -75,6 +76,26 @@ public class Warrior extends Character {
 					}
 				} catch (UnusableItemException k) {
 					attack(target, action);
+				}
+			} else if (action.equals("r") || action.equals("R")) {
+				double enemSpd = target.getSpd();
+				int run = ran.nextInt(20);
+				if (target instanceof Boss) {
+					System.out.println("Enemy is too strong! You cannot run.");
+					System.out.print("Choose a new option: ");
+					Scanner scaner = new Scanner(System.in);
+					attack(target, scaner.nextLine());
+				} else if (enemSpd >= getSpd()){
+					if (run == 20) {
+						setRunAway(true);
+					}
+				} else {
+					double runChance = getSpd() - enemSpd;
+					if (run < runChance) {
+						setRunAway(true);
+					} else {
+						System.out.println("Running away failed!");
+					}
 				}
 			}
 

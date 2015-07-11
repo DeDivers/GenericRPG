@@ -1,5 +1,5 @@
 public class Bear extends Monster {
-	private Ailment ad = new AttackDown(.75);
+	private Ailment ad = new AttackChange(.75);
 
 	public Bear() {
 		super("Forest Bear", 75, 10, 5, 6, 80);

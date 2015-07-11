@@ -2,7 +2,7 @@ public class Sim { //used to test everything. Play to your heart's content
 
 	public static void main(String[] args) {
 		Character nemu = new Warrior("Slim", 100, 20, 10, 20, "Male");
-		Monster slime = new TestingDummy();
+		Monster slime = new Bear();
 
 		Sword hellBreaker = new Sword(5, 90, 1, "Hell Breaker");
 		Staff wander = new Staff(6, 91, 2, "Wander", 10);
@@ -10,7 +10,7 @@ public class Sim { //used to test everything. Play to your heart's content
 
 		Inventory i = new Inventory();
 
-		nemu.addAilment(new AttackDown(.5));
+		//nemu.addAilment(new AttackChange(.5));
 
 		i.add(hellBreaker);
 		i.add(wander);

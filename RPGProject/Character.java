@@ -5,6 +5,7 @@ public abstract class Character extends Base implements Levelable{
 	private int exp;
 	private Inventory inventory;
 	private ExperienceTable table;
+	private boolean canRun;
 
 	
 	public Character(String name, double hp, double att, double def, double spd, String gender) {
@@ -14,6 +15,7 @@ public abstract class Character extends Base implements Levelable{
 		exp = 0;
 		inventory = new Inventory();
 		table = new ExperienceTable();
+		canRun = false;
 	}
 
 	public String getGender() {
@@ -32,13 +34,13 @@ public abstract class Character extends Base implements Levelable{
 			for (int i = 5; i > 0; i--) {
 				String ans = s.next();
 				System.out.println("Points remaining: " + i);
-				if (ans.equals("a" || "A")) { //Increases attack stat by 1
+				if (ans.equals("a") || ans.equals("A")) { //Increases attack stat by 1
 					setAtt(1);
-				} else if (ans.equals("d" || "D")) { //Increases defense stat by 1
+				} else if (ans.equals("d") || ans.equals("D")) { //Increases defense stat by 1
 					setDef(1);
-				} else if (ans.equals("s" || "S")) { //Increases Speed stat by 1
+				} else if (ans.equals("s") || ans.equals("S")) { //Increases Speed stat by 1
 					setSpd(1);
-				} else if (ans.equals("h" || "H")) { // Increases Maximum HP by 7
+				} else if (ans.equals("h") || ans.equals("H")) { // Increases Maximum HP by 7
 					setMaxHP(7);
 				} else {
 					System.out.println("Not a valid input.");
@@ -64,6 +66,14 @@ public abstract class Character extends Base implements Levelable{
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	public boolean canRunAway() {
+		return canRun;
+	}
+
+	public void setRunAway(boolean b) {
+		canRun = b;
 	}
 
 	public abstract void equip(Weapon obj); //Abstract to allow for more modularity for different classes.
