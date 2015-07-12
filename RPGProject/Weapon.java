@@ -1,6 +1,5 @@
 public abstract class Weapon extends Item {
 	
-	private String name;
 	private double attack;
 	private int accuracy;
 	private double defense;
@@ -26,6 +25,10 @@ public abstract class Weapon extends Item {
 
 	public String toString() {
 		return "Weapon";
+	}
+
+	public String getInfo() {
+		return ("Attack = " + attack + "/ Accuracy = " + accuracy + "/ Defense = " + defense);
 	}
 
 }

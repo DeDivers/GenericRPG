@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Warrior extends Character {
 	
 	private Weapon[] equipped = new Weapon[1];
+	private Armor[] equipArmor = new Armor[3];
 	
 	public Warrior(String name, double hp, double att, double def, double spd, String gender) {
 		super(name, hp, att, def, spd, gender);
@@ -10,7 +11,7 @@ public class Warrior extends Character {
 	}
 
 	public void equip(Weapon obj) {
-		if (obj.toString().equals("Sword")) {
+		if (obj instanceof Sword) {
 			if (equipped[0] == null) {
 				setAtt(obj.getAttack());
 				setDef(obj.getDefense());
@@ -31,6 +32,46 @@ public class Warrior extends Character {
 		setAtt(-equipped[0].getAttack());
 		setDef(-equipped[0].getDefense());
 		equipped[0] = null;
+	}
+
+	public void equip(Armor obj) {
+		int x = 0;
+		try {
+			for (Armor a: equip) {
+				if (obj.equals(a)) {
+					setAtt(-a.getAttack());
+					setDef(-a.getDefense());
+					setSpd(-a.getSpeed());
+					setAtt(obj.getAttack());
+					setDef(obj.getDefense());
+					setSpd(obj.getSpeed());
+					System.out.println(obj + " is equipped!");
+					equip[x] = obj;
+					x = 4;
+				}
+			}
+			if (x == 4){
+				System.out.println("");
+			} else if (equip[x] == null) {
+				setAtt(obj.getAttack());
+				setDef(obj.getDefense());
+				setSpd(obj.getSpeed());
+				System.out.println(obj + " is equipped!");
+				equip[x] = obj;
+			} else {
+				x++;
+			}
+		} catch (IndexOutOfBoundsException i) {
+			System.out.println("Please unequip a piece of armor first!");
+		}
+	}
+
+	public void unequip(int index) {
+		Armor obj = equip[index];
+		setAtt(-obj.getAttack());
+		setDef(-obj.getDefense());
+		setSpd(-obj.getSpeed());
+		equip[index] = null;
 	}
 
 	public void attack(Monster target, String action) {
