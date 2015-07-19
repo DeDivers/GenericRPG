@@ -9,8 +9,8 @@ public class Shield extends Armor {
 	}
 
 	public boolean equals(Object other) {
-		if (other == null) {return false};
-		if (this == other) {return true};
+		if (other == null) {return false;}
+		if (this == other) {return true;}
 		if (!(other instanceof Armor)) {
 			return false;
 		} else {

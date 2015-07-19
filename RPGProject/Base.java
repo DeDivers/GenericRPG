@@ -13,6 +13,7 @@ public abstract class Base implements Inflictable {
 	private double defenseMod;
 	private double speedMod;
 	private double accuracyMod;
+	private double criticalMod;
 
 	public Base(String name, double hp, double att, double def, double spd) {
 		this.name = name;
@@ -26,6 +27,7 @@ public abstract class Base implements Inflictable {
 		defenseMod = 1;
 		speedMod = 1;
 		accuracyMod = 1;
+		criticalMod = .01;
 	}
 
 	public String getName() {
@@ -148,6 +150,14 @@ public abstract class Base implements Inflictable {
 
 	public void setAccuracyModifier(double value) {
 		accuracyMod = value;
+	}
+
+	public double getCritcalModifier() {
+		return criticalMod;
+	}
+
+	public void setCriticalModifier(double value) {
+		criticalMod = value;
 	}
 
 	public double damage(double att) {
