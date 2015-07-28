@@ -1,21 +1,28 @@
-import java.util.HashSet;
 import java.util.ArrayList;
 
 public class SkillTree {
-	private HashSet<Skill> skills;
+	private ArrayList<Skill> skills;
 	private ArrayList<Skill> usableSkill;
 
 	public SkillTree() {
-		skills = new HashSet<>();
+		skills = new ArrayList<>();
 		usableSkill = new ArrayList<>();
 		skills.add(new CrossChop());
 	}
 
 	public ArrayList<Skill> authenticate(Character ch) {
 		for (Skill s: skills) {
-			for (Character c: s.getUseCharacter()) {
-				if (ch.getClass() instanceof c.getClass() && ch.getLevel >= s.getLevel()) {
-					usableSkill.add(s);
+			//System.out.println(s);
+			if (usableSkill.contains(s)) {
+				System.out.print("");
+			} else {
+				for (String c: s.getUseCharacters()) {
+					//System.out.println(c);
+					//System.out.println(c);
+					if (ch.getType().equals(c) && ch.getLevel() >= s.getLevel()) {
+						//System.out.println("True");
+						usableSkill.add(s);
+					}
 				}
 			}
 		}

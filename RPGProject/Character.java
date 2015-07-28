@@ -76,14 +76,21 @@ public abstract class Character extends Base implements Levelable{
 		canRun = b;
 	}
 
-	public boolean equals(Object other) {
-		if (other.getClass())
-	}
+	/*public boolean equals(Object other) {
+		if (other.getType().equals(this.getType())) {
+			return true;
+		}
+		return false;
+	}*/
 
 	public abstract void equip(Weapon obj); //Abstract to allow for more modularity for different classes.
 
 	public abstract void equipA(Armor obj);
 
 	public abstract void attack(Monster target, String action); //Abstract to allow more modularity for any extra classes.
+
+	public abstract String getType();
+
+	public abstract double getAccuracy();
 	
 }

@@ -1,6 +1,8 @@
 public class Sim { //used to test everything. Play to your heart's content
 
 	public static void main(String[] args) {
+		CrossChop cp = new CrossChop();
+		System.out.println(cp.getUseCharacters().size());
 		Character nemu = new Warrior("Slim", 100, 20, 10, 20, "Male");
 		Monster slime = new Bear();
 

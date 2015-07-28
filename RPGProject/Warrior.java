@@ -14,6 +14,10 @@ public class Warrior extends Character {
 	public double getAccuracy() {
 		return equipped[0].getAccuracy();
 	}
+	@Override
+	public String getType() {
+		return "W";
+	}
 
 	public void equip(Weapon obj) {
 		if (obj instanceof Sword) {
@@ -103,15 +107,17 @@ public class Warrior extends Character {
 			} else if (action.equals("k") || action.equals("K")) { //For skills if I get this Far
 				int x = 1;
 				Scanner scanLine = new Scanner(System.in);
-				ArrayList<Skills> sk = skillList.authenticate(this);
+				ArrayList<Skill> sk = skillList.authenticate(this);
 				for (Skill s: sk) {
 					System.out.println(x + ") " + s);
+					x++;
 				}
 				System.out.print("Choose a skill (Press 0 to exit): ");
-				int skillChoice = scanLine.nextLine();
+				int skillChoice = scanLine.nextInt();
 				if (skillChoice == 0) {
 					attack(target, "a");
 				} else {
+					skillChoice = skillChoice - 1;
 					sk.get(skillChoice).use(this, target);
 				}
 

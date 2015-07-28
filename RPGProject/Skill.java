@@ -4,10 +4,10 @@ import java.util.Random;
 public abstract class Skill {
 	private String name;
 	private int level;
-	private ArrayList<Character> useable;
+	private ArrayList<String> useable;
 	private int skillLevel;
 
-	public Skill(String name, int level, ArrayList<Character> useable, int skillLevel) {
+	public Skill(String name, int level, ArrayList<String> useable, int skillLevel) {
 		this.name = name;
 		this.level = level;
 		this.useable = useable;
@@ -24,7 +24,7 @@ public abstract class Skill {
 		return level;
 	}
 
-	public ArrayList<Character> getUseCharacters() {
+	public ArrayList<String> getUseCharacters() {
 		return useable;
 	}
 
@@ -44,10 +44,6 @@ public abstract class Skill {
 	public double randomDecimal() {
 		Random r = new Random();
 		return r.nextDouble();
-	}
-
-	public Warrior sampleWarrior() {
-		return new Warrior("A", 1, 1, 1, 1, "Male");
 	}
 
 	public String toString() {

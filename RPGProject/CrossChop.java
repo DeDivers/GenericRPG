@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 public class CrossChop extends Skill{
-	private ArrayList<Character> cal = new ArrayList<>();
+	private static ArrayList<String> cal = new ArrayList<>();
 	
 	public CrossChop() {
-		cal.add(sampleWarrior());
-		super("Cross Chop", 2, cal, 1);
+		super("Cross Chop", 1, cal, 1);
+		//cal = new ArrayList<>();
+		if (cal.isEmpty()) {
+			cal.add("W");
+		}
+		//cal.add("M");
 	}
 
 	public void use(Character ch, Monster mo) {
@@ -15,9 +19,9 @@ public class CrossChop extends Skill{
 		double crit = 1;
 		while (x < 2) {
 			x++;
-			int randomNum = randomNumberGenerator();
+			int randomNum = randomNumberGen();
 			double randomDec = randomDecimal();
-			double acc = ch.getAccuracy() * getAccuracyModifier();
+			double acc = ch.getAccuracy() * ch.getAccuracyModifier();
 			double accPer = 100 - acc;
 			if (randomNum > accPer) {
 				if (randomDec < ch.getCriticalModifier()) {
@@ -26,10 +30,10 @@ public class CrossChop extends Skill{
 				}
 				double damage = mo.damage(crit * dam);
 				damageDone = damageDone + damage;
-				System.out.println("Hit " + (x + 1) + " did " + damage + " damage.");
+				System.out.println("Hit " + (x) + " did " + damage + " damage.");
 			}
-			System.out.println("You did a total of " + damageDone + " damage.");
 		}
+		System.out.println("You did a total of " + damageDone + " damage.");
 			 
 	}
 }

@@ -152,7 +152,7 @@ public abstract class Base implements Inflictable {
 		accuracyMod = value;
 	}
 
-	public double getCritcalModifier() {
+	public double getCriticalModifier() {
 		return criticalMod;
 	}
 
