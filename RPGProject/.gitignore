@@ -1,5 +1,7 @@
 RPGProject/Poison
 *.class
-*.class
-*.class
-*.class
+Character.class
+Sim.class
+Sword.class
+Warrior.class
+Weapon.class
