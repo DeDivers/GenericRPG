@@ -26,11 +26,11 @@ public class Sim { //used to test everything. Play to your heart's content
 		nemu.equip(hellBreaker);
 		nemu.equipA(blocker);
 
-		System.out.println(nemu.getAtt());
+		//System.out.println(nemu.getAtt());
 		nemu.equip(wander);
-		nemu.equip(wanderR);
+		//nemu.equip(wanderR);
 
-		System.out.println(nemu.getAtt());
+		//System.out.println(nemu.getAtt());
 		
 		Battle b = new Battle(nemu, slime);
 		b.battleProcess();
