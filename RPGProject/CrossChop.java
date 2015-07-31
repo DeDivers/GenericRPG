@@ -3,9 +3,9 @@ public class CrossChop extends Skill{
 	private static ArrayList<String> cal = new ArrayList<>();
 	
 	public CrossChop() {
-		super("Cross Chop", 1, cal, 1);
+		super("Cross Chop", 1, cal, 1, 5);
 		//cal = new ArrayList<>();
-		if (cal.isEmpty()) {
+		if (cal.isEmpty()) {//Since cal is static this must be done to prevent duplicate Usable characters.
 			cal.add("W");
 		}
 		//cal.add("M");
@@ -25,7 +25,7 @@ public class CrossChop extends Skill{
 			double accPer = 100 - acc;
 			if (randomNum > accPer) {
 				if (randomDec < ch.getCriticalModifier()) {
-					crit = 2.00;
+					crit = 2.00;//Only doubles for the sake of balance
 					System.out.println("Critical Hit!");
 				}
 				double damage = mo.damage(crit * dam);

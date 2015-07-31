@@ -17,7 +17,7 @@ public class Battle {
 			battleActions();
 			action = s.next();
 			System.out.println("Turn #" + turnCount);
-			if (battlePlay.isInflicted()) {
+			if (battlePlay.isInflicted()) {//Checks if Player has status effect and activates them
 				for (Ailment a : battlePlay.ailments()) {
 					a.affect(battlePlay);
 				}
@@ -27,7 +27,7 @@ public class Battle {
 					a.affect(battleEnem);
 				}
 			}
-			if (action.equals("a") || action.equals("A") || action.equals("k") || action.equals("K")){
+			if (action.equals("a") || action.equals("A") || action.equals("k") || action.equals("K")){//Only if an attack or skill is used
 				if (battleEnem.getSpd() >= battlePlay.getSpd()) {
 					battleEnem.attack(battlePlay);
 					battlePlay.attack(battleEnem, action);
@@ -44,7 +44,8 @@ public class Battle {
 				}
 			}
 			
-			System.out.println(battlePlay.getHP());
+			System.out.println(battlePlay.getHP() + "/" + battlePlay.getMaxHP());
+			System.out.println(battlePlay.getMana() + "/" + battlePlay.getMaxMana());
 			System.out.println(battleEnem.getHP());
 			System.out.println();
 			turnCount++;

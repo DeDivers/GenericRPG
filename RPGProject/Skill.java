@@ -6,12 +6,14 @@ public abstract class Skill {
 	private int level;
 	private ArrayList<String> useable;
 	private int skillLevel;
+	private int manaCost;
 
-	public Skill(String name, int level, ArrayList<String> useable, int skillLevel) {
+	public Skill(String name, int level, ArrayList<String> useable, int skillLevel, int manaCost) {
 		this.name = name;
 		this.level = level;
 		this.useable = useable;
 		this.skillLevel = skillLevel;
+		this.manaCost = manaCost;
 	}
 
 	public abstract void use(Character ch, Monster mo);
@@ -36,7 +38,11 @@ public abstract class Skill {
 		skillLevel++;
 	}
 
-	public int randomNumberGen() { //Allows all subclasses of Monster to have random numbers w/o importing Random
+	public int getManaCost() {
+		return manaCost;
+	}
+
+	public int randomNumberGen() { //Allows all subclasses of Skill to have random numbers w/o importing Random
 		Random r = new Random();
 		return r.nextInt(100);
 	}

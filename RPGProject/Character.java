@@ -6,11 +6,15 @@ public abstract class Character extends Base implements Levelable{
 	private Inventory inventory;
 	private ExperienceTable table;
 	private boolean canRun;
+	private int mana;
+	private int maxMana;
 
 	
-	public Character(String name, double hp, double att, double def, double spd, String gender) {
+	public Character(String name, double hp, double att, double def, double spd, String gender, int mana) {
 		super(name, hp, att, def, spd);
 		this.gender = gender;
+		maxMana = mana;
+		this.mana = mana;
 		level = 1;
 		exp = 0;
 		inventory = new Inventory();
@@ -18,7 +22,7 @@ public abstract class Character extends Base implements Levelable{
 		canRun = false;
 	}
 
-	public String getGender() {
+	public String getGender() {//Currently useless, may be functional later on
 		return gender;
 	}
 
@@ -26,8 +30,27 @@ public abstract class Character extends Base implements Levelable{
 		return level;
 	}
 
+	public int getMana() {
+		return mana;
+	}
+
+	public void setMana(int i) {
+		mana = mana + i;
+		if (mana > maxMana) {
+			mana = maxMana;
+		}
+	}
+
+	public int getMaxMana() {
+		return maxMana;
+	}
+
+	public void setMaxMana(int plus) {
+		maxMana = maxMana + plus;
+	}
+
 	public void levelUp() {
-		if (exp >= table.getNextLevel(level)) { //Checks the ExperienceTable to see if the experience is higher tan the next EXP level
+		if (exp >= table.getNextLevel(level)) { //Checks the ExperienceTable to see if the experience is higher than the next EXP level
 			Scanner s = new Scanner(System.in);
 			level += 1;
 			System.out.println("Level up!");
@@ -42,6 +65,8 @@ public abstract class Character extends Base implements Levelable{
 					setSpd(1);
 				} else if (ans.equals("h") || ans.equals("H")) { // Increases Maximum HP by 7
 					setMaxHP(7);
+				} else if (ans.equals("m") || ans.equals("M")) { //Increases Maximum mana by 5
+					setMaxMana(5);
 				} else {
 					System.out.println("Not a valid input.");
 					i++;

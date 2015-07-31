@@ -18,7 +18,7 @@ public class Inventory {
 	}
 
 	public void add(Item obj) {
-		if (obj == null) {
+		if (obj == null) {//To avoid adding null objects into the inventory
 			System.out.print("");
 		} else {
 			System.out.println("You found " + obj.getName());

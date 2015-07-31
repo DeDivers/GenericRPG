@@ -1,5 +1,5 @@
 import java.util.HashSet;
-public interface Inflictable {
+public interface Inflictable { //Allows For monsters and humans alike to be affilicted by status effects.
 	
 	boolean isInflicted();
 

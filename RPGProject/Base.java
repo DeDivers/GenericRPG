@@ -27,7 +27,7 @@ public abstract class Base implements Inflictable {
 		defenseMod = 1;
 		speedMod = 1;
 		accuracyMod = 1;
-		criticalMod = .01;
+		criticalMod = .01;//1% chance
 	}
 
 	public String getName() {
@@ -56,7 +56,7 @@ public abstract class Base implements Inflictable {
 	public void setMaxHP(double ks) {
 		maxHP = maxHP + ks;
 	}
-
+	//The shorthand was used early on and I am too far in to change it so these gets and sets are going to be the odd ones out.
 	public double getAtt() {
 		return attack;
 	}
@@ -120,6 +120,7 @@ public abstract class Base implements Inflictable {
 		canMove = b;
 	}
 
+	//Should be self exlanitory
 	public double getAttackModifier() {
 		return attackMod;
 	}
@@ -160,7 +161,7 @@ public abstract class Base implements Inflictable {
 		criticalMod = value;
 	}
 
-	public double damage(double att) {
+	public double damage(double att) {//This formula is bad but it was made in a period of 5 minutes. This may be adjusted later.
 		Random ran = new Random();
 		double defence = getDef() * getDefenseModifier();
 		double damPer = (100 - (defence / att))/ 100;
@@ -169,9 +170,9 @@ public abstract class Base implements Inflictable {
 		}
 		double atk = att * damPer;
 		double flux = atk * .5;
-		double atak = flux * ran.nextDouble();
+		double atak = flux * ran.nextDouble();//This adds randomness to the damage values.
 		int dou = ran.nextInt(2);
-		if (dou == 0) {
+		if (dou == 0) { //if heads, it adds damage flux, else it decreases damage flux
 			atak = atak * -1;
 		}
 		setHP(-(atk + atak));
