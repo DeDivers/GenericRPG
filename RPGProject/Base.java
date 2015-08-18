@@ -109,6 +109,15 @@ public abstract class Base implements Inflictable {
 	}
 
 	public void healAll() { //Gets rid of all status effects from the character.
+		if (statusEff.isEmpty()) {
+			System.out.print("");
+		} else {
+			for (Ailment ail : statusEff) {
+				if (ail instanceof StatusChange) {
+					ail.normalize();
+				}
+			}
+		}
 		statusEff.clear();
 	}
 

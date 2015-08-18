@@ -23,7 +23,7 @@ public class CrossChop extends Skill{
 			double randomDec = randomDecimal();
 			double acc = ch.getAccuracy() * ch.getAccuracyModifier();
 			double accPer = 100 - acc;
-			if (randomNum > accPer) {
+			if (randomNum >= accPer) {
 				if (randomDec < ch.getCriticalModifier()) {
 					crit = 2.00;//Only doubles for the sake of balance
 					System.out.println("Critical Hit!");

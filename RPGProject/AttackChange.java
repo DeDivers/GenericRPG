@@ -1,20 +1,24 @@
 public class AttackChange extends StatusChange {
-	private int turnCount;
+	private int turnC;
 
 	public AttackChange(double percent) { //percent affects the modifier in base (.75 = 75% damage done)
 		super("Attack Change", "Attack Change", percent, Types.ATTACK);
-		turnCount = 0;
+		turnC = turnCount;
 	}
 
 	public void affect(Base ch) {
-		turnCount++;
+		//turnCount++;
 		//System.out.println(turnCount);
-		if (turnCount > 5) {//This effect lasts 5 turns
-			ch.setAttackModifier(1);//resets the modifier and gets rid of the ailment 
-			ch.healAilment(this);
+		if (turnCount > (turnC + 5)) {//This effect lasts 5 turns
+			normalize(ch);
 		} else {
 			ch.setAttackModifier(getPercentage());
 		}
+	}
+
+	public void normalize(Base ch) {
+		ch.setAttackModifier(1);//resets the modifier and gets rid of the ailment 
+		ch.healAilment(this);
 	}
 
 }

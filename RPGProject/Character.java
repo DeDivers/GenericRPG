@@ -11,6 +11,7 @@ public abstract class Character extends Base implements Levelable{
 	private int mana;
 	private int maxMana;
 	private SkillTree skillList;
+	private Random ran = new Random();
 	
 	public Character(String name, double hp, double att, double def, double spd, String gender, int mana) {
 		super(name, hp, att, def, spd);
@@ -115,9 +116,52 @@ public abstract class Character extends Base implements Levelable{
 
 	public abstract void equipA(Armor obj);
 
+	private void skillA(Manster target) {
+		int x = 1;
+		Scanner scanLine = new Scanner(System.in);
+		ArrayList<Skill> sk = skillList.authenticate(this);//This retrieves the usable skills for the class and level
+		for (Skill s: sk) {
+			if (getMana() >= s.getManaCost()) {//You can't see them if you can't use them.
+				System.out.println(x + ") " + s + " - " + s.getManaCost());
+				x++;
+			}
+		}
+		System.out.print("Choose a skill (Press 0 to exit): ");
+		int skillChoice = scanLine.nextInt();
+		if (skillChoice == 0) {
+			attack(target, "a");//This just auto attacks for the moment
+		} else {
+			skillChoice = skillChoice - 1;
+			setMana(-(sk.get(skillChoice).getManaCost()));
+			sk.get(skillChoice).use(this, target);
+		}
+
+	}
+
+	private void run(Manster target) {
+		double enemSpd = target.getSpd();
+		int run = ran.nextInt(20);
+		if (target instanceof Boss) { //You can't run from a boss battle, that defeats the purpose of a boss battle.
+			System.out.println("Enemy is too strong! You cannot run.");
+			System.out.print("Choose a new option: ");
+			Scanner scaner = new Scanner(System.in);
+			attack(target, scaner.nextLine());
+		} else if (enemSpd >= getSpd()){ //There is only a 5% chance if a normal enemy is faster or just as fast as the player
+			if (run == 20) {
+				setRunAway(true);
+			}
+		} else {
+			double runChance = getSpd() - enemSpd;//chance increases by 5% for every point of speed above the enemy. 
+			if (run < runChance) {
+				setRunAway(true);
+			} else {
+				System.out.println("Running away failed!");
+			}
+		}
+	}
+
 	public void attack(Monster target, String action) {
 		if (getCanMove()){ //if the character is paralyzed (or sleep if I add it), nothing can happen
-			Random ran = new Random();
 			if (action.equals("a") || action.equals("A")) {
 				double acc = getAccuracy() * getAccuracyModifier();
 				double accPer = 100 - acc;
@@ -137,25 +181,7 @@ public abstract class Character extends Base implements Levelable{
 			} else if (action.equals("s") || action.equals("S")) { //This is to skip turns while in battle.
 				System.out.println("You skipped your turn.");
 			} else if (action.equals("k") || action.equals("K")) { //This allows the user to use skills in battle.
-				int x = 1;
-				Scanner scanLine = new Scanner(System.in);
-				ArrayList<Skill> sk = skillList.authenticate(this);//This retrieves the usable skills for the class and level
-				for (Skill s: sk) {
-					if (getMana() >= s.getManaCost()) {//You can't see them if you can't use them.
-						System.out.println(x + ") " + s + " - " + s.getManaCost());
-						x++;
-					}
-				}
-				System.out.print("Choose a skill (Press 0 to exit): ");
-				int skillChoice = scanLine.nextInt();
-				if (skillChoice == 0) {
-					attack(target, "a");//This just auto attacks for the moment
-				} else {
-					skillChoice = skillChoice - 1;
-					setMana(-(sk.get(skillChoice).getManaCost()));
-					sk.get(skillChoice).use(this, target);
-				}
-
+				skillA(target);
 			} else if (action.equals("i") || action.equals("I")) { //This opens the inventory to be able to use items in battle, currently half functioning
 				Scanner scan = new Scanner(System.in);
 				getInventory().open();
@@ -186,27 +212,7 @@ public abstract class Character extends Base implements Levelable{
 					attack(target, action); //currently does not function
 				}
 			} else if (action.equals("r") || action.equals("R")) { //Allows the player to run from battle
-				double enemSpd = target.getSpd();
-				int run = ran.nextInt(20);
-				if (target instanceof Boss) { //You can't run from a boss battle, that defeats the purpose of a boss battle.
-					System.out.println("Enemy is too strong! You cannot run.");
-					System.out.print("Choose a new option: ");
-					Scanner scaner = new Scanner(System.in);
-					attack(target, scaner.nextLine());
-				} else if (enemSpd >= getSpd()){ //There is only a 5% chance if a normal enemy is faster or just as fast as the player
-					if (run == 20) {
-						setRunAway(true);
-					}
-				} else {
-					double runChance = getSpd() - enemSpd;//chance increases by 5% for every point of speed above the enemy. 
-					if (run < runChance) {
-						setRunAway(true);
-					} else {
-						System.out.println("Running away failed!");
-					}
-				}
-			}
-
+				run(target);
 		} else {
 			System.out.println("You are paralyzed and cannot move!");
 		}

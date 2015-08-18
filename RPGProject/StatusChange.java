@@ -15,4 +15,6 @@ public abstract class StatusChange extends Ailment {
 	public double getPercentage() {
 		return percent;
 	}
+
+	public abstract void normalize(); //Gets rid of whatever changed and returns it to normal.
 }
