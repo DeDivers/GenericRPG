@@ -114,7 +114,7 @@ public abstract class Base implements Inflictable {
 		} else {
 			for (Ailment ail : statusEff) {
 				if (ail instanceof StatusChange) {
-					ail.normalize();
+					ail.normalize(this);
 				}
 			}
 		}

@@ -13,7 +13,7 @@ public class SkillTree {
 	public ArrayList<Skill> authenticate(Character ch) {
 		for (Skill s: skills) {
 			if (usableSkill.contains(s)) {//Keeps duplicate skill out of the list otherwise list full of duplicates
-				System.out.print("");
+				
 			} else {
 				for (String c: s.getUseCharacters()) {
 					if (ch.getType().equals(c) && ch.getLevel() >= s.getLevel()) {

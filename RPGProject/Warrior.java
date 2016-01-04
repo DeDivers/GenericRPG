@@ -7,6 +7,7 @@ public class Warrior extends Character {
 	
 	public Warrior(String name, double hp, double att, double def, double spd, String gender) {
 		super(name, hp, att, def, spd, gender, 25);
+		changeEXPTable('w');
 	}
 
 	public double getAccuracy() {

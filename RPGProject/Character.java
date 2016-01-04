@@ -93,6 +93,10 @@ public abstract class Character extends Base implements Levelable{
 		return table.getNextLevel(level) - exp;
 	}
 
+	public void changeEXPTable(char c) {
+		table.recalculateEXP(c);
+	}
+
 	public Inventory getInventory() {
 		return inventory;
 	}
@@ -116,7 +120,7 @@ public abstract class Character extends Base implements Levelable{
 
 	public abstract void equipA(Armor obj);
 
-	private void skillA(Manster target) {
+	private void skillA(Monster target) {
 		int x = 1;
 		Scanner scanLine = new Scanner(System.in);
 		ArrayList<Skill> sk = skillList.authenticate(this);//This retrieves the usable skills for the class and level
@@ -138,7 +142,7 @@ public abstract class Character extends Base implements Levelable{
 
 	}
 
-	private void run(Manster target) {
+	private void run(Monster target) {
 		double enemSpd = target.getSpd();
 		int run = ran.nextInt(20);
 		if (target instanceof Boss) { //You can't run from a boss battle, that defeats the purpose of a boss battle.
@@ -213,10 +217,12 @@ public abstract class Character extends Base implements Levelable{
 				}
 			} else if (action.equals("r") || action.equals("R")) { //Allows the player to run from battle
 				run(target);
+			}
 		} else {
 			System.out.println("You are paralyzed and cannot move!");
 		}
 	}
+	
 
 	public abstract String getType();
 

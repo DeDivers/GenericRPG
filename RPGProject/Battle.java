@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Battle {
 	private Monster battleEnem;
 	private Character battlePlay;
-	public int turnCount;
+	private int turnCount;
 	private String action;
 
 	public Battle(Character ch, Monster mo) {
