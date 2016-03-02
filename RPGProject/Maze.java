@@ -7,16 +7,19 @@ public class Maze {
 	private ArrayList<Coordiate> notvisited;
 	private int x;
 	private int y;
+	private int prob = 100;
 	private Random r = new Random();
 
 	public Maze(int x, int y) {
 		this.x = x;
 		this.y = y;
 		notvisited = new ArrayList<>();
-		// for (int i = 0; i < x; i++) {
-		// 	visited[i] = new ArrayList<Integer>();
-		// }
 		maze = new char[x][y]; 
+	}
+
+	public Maze(int xx, int yy, int prob) {
+		this(xx, yy);
+		this.prob = prob;
 	}
 
 	public void generate() {
@@ -69,12 +72,16 @@ public class Maze {
 	private void makeWall(int dx, int dy) {
 		maze[dx][dy] = 'W';
 	}
-
+	//Intermediate tile between Nothing and wall/path
 	private void makeToDetermine(int dx, int dy) {
 		maze[dx][dy] = '?';
 	}
+	public void setPosition(int dx, int dy) {
+		maze[dx][dy] = 'X';
+	}
 
-	public boolean check(int dx, int dy) {
+	//Checks if a particular tile should be a wall or a path
+	private boolean check(int dx, int dy) {
 		ArrayList<Integer> check = new ArrayList<>();
 		int state = 0;
 		if (dx > 0) {
@@ -108,6 +115,10 @@ public class Maze {
 		if (check.contains(state)) {
 			return true;
 		}
+		//Randomly makes loops and extra corridors; Highest is 50% chance.
+		if (r.nextInt(prob) == 1){
+			return true;
+		}
 		return false;
 	}
 
@@ -122,6 +133,7 @@ public class Maze {
 		return map;
 	}
 
+//Deals with the xy coordinate plane within an ArrayList
 	private class Coordiate {
 		private int cx;
 		private int cy;
